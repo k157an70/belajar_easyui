@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="UTF-8">
+     <title>Basic jQuery EasyUI</title>
+     <link rel="stylesheet" type="text/css" href="themes/default/easyui.css">
+     <link rel="stylesheet" type="text/css" href="themes/icon.css">
+     <script type="text/javascript" src="js/jquery.min.js"></script>
+     <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+</head>
+
+<body>
+     <table 
+        class="easyui-datagrid" 
+        id="dg"
+        title="DATA BARANG"
+        pagination="true"
+        rownumbers="true" 
+        fitColumns="true"
+        fit="true" 
+        singleSelect="true"    
+    >
+      <thead>
+          <tr>
+              <th data-options="field:'code', width: 100">Code</th>
+              <th data-options="field:'name', width:200">Name</th>
+              <th data-options="field:'price', width: 50">Price</th>
+          </tr>
+      </thead>
+  </table>
+<script>
+    $(function(){ // jQuery onReady
+        $('#dg').datagrid({
+            url: "api/index.php",
+            queryParams: {getData: 'barang'},
+            pageSize: 5,
+            pageList: [5,10,15,20,25]
+        })
+    })
+</script>
+</body>
+
+</html>
