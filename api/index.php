@@ -13,9 +13,11 @@ include_once "_class/Koneksi.php";
    // ceking order by
    $sort = isset($_POST['sort']) ? $_POST['sort'] : '';
    $order = isset($_POST['order']) ? $_POST['order'] : 'DESC';
-   $ORDER_BY = empty($sort) ? '' : "ORDER BY $sort $order";
+   //$ORDER_BY = empty($sort) ? '' : "ORDER BY $sort $order";
    // cek value post getdata
    $getData = isset($_POST['getData']) ? $_POST['getData'] : '';
+   // get seraching value
+   $cari = isset($_POST['cari']) ? $_POST['cari'] : '';
    $multiQuery = [];
    $ROWS  = [
       'rows' => []
@@ -25,8 +27,10 @@ include_once "_class/Koneksi.php";
 {
    switch($getData) {
       case "barang" :{
-         $multiQuery[] = "SELECT COUNT(0) as total FROM m_barang";
-         $multiQuery[] = "SELECT * FROM m_barang $ORDER_BY $LIMIT";
+         $WHERE    = empty($cari) ? "WHERE 1" : "WHERE `code`='$cari' OR `name` LIKE '$cari%'";
+         $ORDER_BY =  "ORDER BY ".( empty($sort) ? 'code' : $sort )." $order";
+         $multiQuery[] = "SELECT COUNT(0) as total FROM m_barang $WHERE";
+         $multiQuery[] = "SELECT * FROM m_barang $WHERE $ORDER_BY $LIMIT";
       }break;
       default: break;
    }
