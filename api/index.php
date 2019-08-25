@@ -19,6 +19,7 @@ include_once "_class/Koneksi.php";
    // get seraching value
    $cari = isset($_POST['cari']) ? $_POST['cari'] : '';
    $multiQuery = [];
+   $emptyMssg = "";
    $ROWS  = [
       'rows' => []
    ];
@@ -27,6 +28,7 @@ include_once "_class/Koneksi.php";
 {
    switch($getData) {
       case "barang" :{
+         $emptyMssg = "Data barang tidak tersedia";
          $WHERE    = empty($cari) ? "WHERE 1" : "WHERE `code`='$cari' OR `name` LIKE '$cari%'";
          $ORDER_BY =  "ORDER BY ".( empty($sort) ? 'code' : $sort )." $order";
          $multiQuery[] = "SELECT COUNT(0) as total FROM m_barang $WHERE";
@@ -59,4 +61,4 @@ if(!count($multiQuery)) die(json_encode(['isMessage' => "You cannot access file"
 }
 
 Koneksi::close();
-echo json_encode($ROWS);
+echo json_encode( array_merge($ROWS, ['emptyMssg' => $emptyMssg]) );
