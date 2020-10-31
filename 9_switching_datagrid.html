@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="UTF-8">
+     <title>SWITCHING DATAGRID</title>
+     <link rel="stylesheet" type="text/css" href="themes/default/easyui.css">
+     <link rel="stylesheet" type="text/css" href="themes/icon.css">
+     <script type="text/javascript" src="js/jquery.min.js"></script>
+     <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+     <script type="text/javascript" src="js/switching.js"></script>
+</head>
+<body class="easyui-layout">
+   <div data-options="region:'west'" style="width: 50%;" title="LEFT">
+      <table class="easyui-datagrid" id="dg1"
+         border="false" 
+         pagination="true" 
+         rownumbers="true" 
+         fitColumns="true" 
+         fit="true" 
+         toolbar="#tb1"
+      >
+         <thead>
+             <tr>
+                  <th data-options="field:'ck', checkbox: true"></th>
+                 <th data-options="field:'code', width: 100">Code</th>
+                 <th data-options="field:'name', width:200">Name</th>
+                 <th data-options="field:'price', width: 50">Price</th>
+             </tr>
+         </thead>
+     </table>
+   </div>
+
+   <div data-options="region:'center'" title="RIGHT">
+      <table class="easyui-datagrid" id="dg2"
+         border="false" 
+         rownumbers="true" 
+         fitColumns="true" 
+         fit="true" 
+         singleSelect="true"
+         toolbar="#tb2"
+      >
+         <thead>
+             <tr>
+                 <th data-options="field:'code', width: 100">Code</th>
+                 <th data-options="field:'name', width:200">Name</th>
+                 <th data-options="field:'price', width: 50">Price</th>
+             </tr>
+         </thead>
+     </table>
+   </div>
+
+   <div id="tb1" style="text-align: right;padding: 3px;">
+      <a href="javascript:;"  class="easyui-linkbutton" onclick="add()"><b>ADD >></b></a>
+   </div>
+
+   <div id="tb2" style="padding: 3px;">
+      <a href="javascript:;"  class="easyui-linkbutton" onclick="remove()"><b><< REMOVE</b></a>
+      <input type="hidden" id="temp-code" style="width: 100%;"/>
+   </div>
+</body>
+
+</html>

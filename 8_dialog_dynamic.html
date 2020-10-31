@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Basic jQuery EasyUI</title>
+    <link rel="stylesheet" type="text/css" href="themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="themes/icon.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+</head>
+
+<body>
+    <h2>Dialog Dynamic In EasyUI</h2>
+    <a href="javascript:void(0)" 
+        class="easyui-linkbutton" 
+        onclick="createDialogDynamic()"
+    >Open
+   </a>
+
+<script>
+    function createDialogDynamic(){
+        var $dlg = $('#dlg');
+
+        // cek if exist dom with id "dlg"
+        if($dlg.length){
+            $dlg.dialog('center').dialog('open');
+            return;
+        }
+        // else if not exist, then create new dom
+        $('<div>')
+        .attr({ id: 'dlg' })
+        .css({ 
+            width: '400px',
+            height: '200px',
+            padding: '10px'
+        })
+        .appendTo($('body'))
+        .dialog({
+            title: 'My Dialog Dynamic',
+            content: 'This is Content'
+        })
+        .dialog('open')
+    }
+</script>
+</body>
+
+</html>
